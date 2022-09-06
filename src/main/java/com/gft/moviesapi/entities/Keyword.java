@@ -1,15 +1,19 @@
 package com.gft.moviesapi.entities;
 
-public class Genre {
-    private int id;
-    private String name;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-    public Genre() {
-    }
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Keyword {
+    int id;
+    String name;
 
-    public Genre(int id, String name) {
+
+    public Keyword(int id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public Keyword() {
     }
 
     public int getId() {
@@ -30,7 +34,7 @@ public class Genre {
 
     @Override
     public String toString() {
-        return "Genre{" +
+        return "Keyword{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
