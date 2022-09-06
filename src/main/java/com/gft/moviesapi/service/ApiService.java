@@ -35,19 +35,6 @@ public class ApiService {
         return Arrays.asList(lista);
     }
 
-    /*Comodidad de código, para evitar repetirlo en cada función*/
-    public String stream(URL url) throws IOException {
-        InputStream input = url.openStream();
-        InputStreamReader isr = new InputStreamReader(input);
-        BufferedReader reader = new BufferedReader(isr);
-        json = new StringBuilder();
-        int c;
-        while ((c = reader.read()) != -1) {
-            json.append((char) c);
-        }
-        return json.toString();
-    }
-
     public List<Movie> getTopRatedMovies() throws IOException{
         mapper = new ObjectMapper();
         URL url = new URL(uri+"movie/top_rated?api_key="+apiKey);
@@ -58,33 +45,59 @@ public class ApiService {
 
     public Movie getMovie(int movie_id) throws IOException{
         mapper = new ObjectMapper();
-        URL url = new URL(uri+"/movie/"+movie_id+"?api_key="+apiKey);
+        URL url = new URL(uri+"movie/"+movie_id+"?api_key="+apiKey);
         String jsonAString = stream(url);
         Movie pelicula = mapper.readValue(jsonAString,Movie.class);
         return pelicula;
     }
 
-    /*public List<CastCrew> getMovieCredits(Integer movie_id) throws IOException {
+    public CastCrew getMovieCredits(int movie_id) throws IOException {
         mapper = new ObjectMapper();
-        URL url = new URL(uri+"/movie/"+movie_id+"?api_key="+apiKey);
+        URL url = new URL(uri+"movie/"+movie_id+"/credits?api_key="+apiKey);
         String jsonAString = stream(url);
-        CastCrew[] castcrew  = mapper.readValue(mapper.readTree(jsonAString).get("cast").toString(),CastCrew[].class);
-        return Arrays.asList(castcrew);
-    }*/
+        Cast[] cast = mapper.readValue(mapper.readTree(jsonAString).get("cast").toString(),Cast[].class);
+        Crew[] crew = mapper.readValue(mapper.readTree(jsonAString).get("crew").toString(),Crew[].class);
+        CastCrew castCrew = new CastCrew(Arrays.asList(cast),Arrays.asList(crew));
+        return castCrew;
+    }
 
     public List<Keyword> getKeyword(Integer movie_id) throws IOException {
         mapper = new ObjectMapper();
-        URL url = new URL(uri+"/movie/"+movie_id+"/keywords?api_key="+apiKey);
+        URL url = new URL(uri+"movie/"+movie_id+"/keywords?api_key="+apiKey);
         String jsonAString = stream(url);
         Keyword[] response  = mapper.readValue(mapper.readTree(jsonAString).get("keywords").toString(),Keyword[].class);
         return Arrays.asList(response);
     }
 
-    /*public List<Movie> getRecommendations(Integer movie_id) throws IOException {
-        StringBuilder jsonReq = getStringFromRequest("movie/"+movie_id.toString()+"/recommendations?api_key=");
-        Movie[] response  = mapper.readValue(mapper.readTree(jsonReq.toString()).get("results").toString(),Movie[].class);
+    public List<Movie> getRecommendations(int movie_id) throws IOException {
+        mapper = new ObjectMapper();
+        URL url = new URL(uri+"movie/"+movie_id+"/recommendations?api_key="+apiKey);
+        String jsonAString = stream(url);
+        Movie[] response  = mapper.readValue(mapper.readTree(jsonAString.toString()).get("results").toString(),Movie[].class);
         return Arrays.asList(response);
-    }*/
+    }
+
+    public List<Movie> getSimilar(int movie_id) throws IOException {
+        mapper = new ObjectMapper();
+        URL url = new URL(uri+"movie/"+movie_id+"/similar?api_key="+apiKey);
+        String jsonAString = stream(url);
+        Movie[] response  = mapper.readValue(mapper.readTree(jsonAString.toString()).get("results").toString(),Movie[].class);
+        return Arrays.asList(response);
+    }
+
+    /*Comodidad de código, para evitar repetirlo en cada función*/
+    public String stream(URL url) throws IOException {
+        mapper = new ObjectMapper();
+        InputStream input = url.openStream();
+        InputStreamReader isr = new InputStreamReader(input);
+        BufferedReader reader = new BufferedReader(isr);
+        json = new StringBuilder();
+        int c;
+        while ((c = reader.read()) != -1) {
+            json.append((char) c);
+        }
+        return json.toString();
+    }
 
 
 

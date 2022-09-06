@@ -4,35 +4,35 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Cast {
-    private boolean adult;
-    private int cast_id;
-    private String character;
-    private String credit_id;
-    private int gender;
-    private int id;
-    private String known_for_department;
-    private String name;
-    private int order;
-    private String original_name;
-    private float popularity;
-    private String profile_path;
+    boolean adult;
+    int gender;
+    Long id;
+    String known_for_department;
+    String name;
+    String original_name;
+    float popularity;
+    String profile_path;
+    Long cast_id;
+    String character;
+    String credit_id;
+    Long order;
 
     public Cast() {
     }
 
-    public Cast(boolean adult, int cast_id, String character, String credit_id, int gender, int id, String known_for_department, String name, int order, String original_name, float popularity, String profile_path) {
+    public Cast(boolean adult, int gender, Long id, String known_for_department, String name, String original_name, float popularity, String profile_path, Long cast_id, String character, String credit_id, Long order) {
         this.adult = adult;
-        this.cast_id = cast_id;
-        this.character = character;
-        this.credit_id = credit_id;
         this.gender = gender;
         this.id = id;
         this.known_for_department = known_for_department;
         this.name = name;
-        this.order = order;
         this.original_name = original_name;
         this.popularity = popularity;
         this.profile_path = profile_path;
+        this.cast_id = cast_id;
+        this.character = character;
+        this.credit_id = credit_id;
+        this.order = order;
     }
 
     public boolean isAdult() {
@@ -43,30 +43,6 @@ public class Cast {
         this.adult = adult;
     }
 
-    public int getCast_id() {
-        return cast_id;
-    }
-
-    public void setCast_id(int cast_id) {
-        this.cast_id = cast_id;
-    }
-
-    public String getCharacter() {
-        return character;
-    }
-
-    public void setCharacter(String character) {
-        this.character = character;
-    }
-
-    public String getCredit_id() {
-        return credit_id;
-    }
-
-    public void setCredit_id(String credit_id) {
-        this.credit_id = credit_id;
-    }
-
     public int getGender() {
         return gender;
     }
@@ -75,11 +51,11 @@ public class Cast {
         this.gender = gender;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -97,14 +73,6 @@ public class Cast {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getOrder() {
-        return order;
-    }
-
-    public void setOrder(int order) {
-        this.order = order;
     }
 
     public String getOriginal_name() {
@@ -131,21 +99,53 @@ public class Cast {
         this.profile_path = profile_path;
     }
 
+    public Long getCast_id() {
+        return cast_id;
+    }
+
+    public void setCast_id(Long cast_id) {
+        this.cast_id = cast_id;
+    }
+
+    public String getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(String character) {
+        this.character = character;
+    }
+
+    public String getCredit_id() {
+        return credit_id;
+    }
+
+    public void setCredit_id(String credit_id) {
+        this.credit_id = credit_id;
+    }
+
+    public Long getOrder() {
+        return order;
+    }
+
+    public void setOrder(Long order) {
+        this.order = order;
+    }
+
     @Override
     public String toString() {
         return "Cast{" +
                 "adult=" + adult +
-                ", cast_id=" + cast_id +
-                ", character='" + character + '\'' +
-                ", credit_id='" + credit_id + '\'' +
                 ", gender=" + gender +
                 ", id=" + id +
                 ", known_for_department='" + known_for_department + '\'' +
                 ", name='" + name + '\'' +
-                ", order=" + order +
                 ", original_name='" + original_name + '\'' +
                 ", popularity=" + popularity +
                 ", profile_path='" + profile_path + '\'' +
+                ", cast_id=" + cast_id +
+                ", character='" + character + '\'' +
+                ", credit_id='" + credit_id + '\'' +
+                ", order=" + order +
                 '}';
     }
 }

@@ -37,10 +37,10 @@ public class ApiController {
         return apiService.getMovie(movie_id);
     }
 
-    /*@GetMapping("api/movie/{movie_id}/credits")
-    public List<CastCrew> getMovieCredits(@PathVariable Integer movie_id) throws IOException {
+    @GetMapping("api/movie/{movie_id}/credits")
+    public CastCrew getMovieCredits(@PathVariable int movie_id) throws IOException {
         return apiService.getMovieCredits(movie_id);
-    }*/
+    }
 
     /*@GetMapping("api/movie/{movie_id}/images")
     public BackgroundLogosPosters getImagesForMovieById(@PathVariable Integer movie_id) throws IOException {
@@ -48,15 +48,19 @@ public class ApiController {
     }*/
 
     @GetMapping("api/movie/{movie_id}/keywords")
-    public List<Keyword> getKeyword(@PathVariable Integer movie_id) throws IOException {
+    public List<Keyword> getKeyword(@PathVariable int movie_id) throws IOException {
         return apiService.getKeyword(movie_id);
     }
 
-    /*@GetMapping("api/movie/{movie_id}/recommendations")
-    public List<Movie> getRecommendationsForMovieById(@PathVariable Integer movie_id) throws IOException {
-        return middleManMovieDBService.findRecommendationsForMovieById(movie_id);
-    }*/
+    @GetMapping("api/movie/{movie_id}/recommendations")
+    public List<Movie> getRecommendations(@PathVariable int movie_id) throws IOException {
+        return apiService.getRecommendations(movie_id);
+    }
 
+    @GetMapping("api/movie/{movie_id}/similar")
+    public List<Movie> getSimilar(@PathVariable int movie_id) throws IOException {
+        return apiService.getSimilar(movie_id);
+    }
 
 
 }

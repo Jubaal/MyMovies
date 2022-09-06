@@ -8,14 +8,15 @@ import java.util.List;
 public class CastCrew {
     public List<Cast> casts;
     public List<Crew> crews;
+    public CastCrew() {
+
+    }
 
     public CastCrew(List<Cast> casts, List<Crew> crews) {
         this.casts = casts;
         this.crews = crews;
     }
 
-    public CastCrew() {
-    }
 
     public List<Cast> getCasts() {
         return casts;

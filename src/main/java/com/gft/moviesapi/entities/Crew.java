@@ -5,48 +5,40 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Crew {
     private boolean adult;
-    private String credit_id;
-    private String department;
     private int gender;
-    private int id;
-    private String job;
+    private Long id;
     private String known_for_department;
     private String name;
     private String original_name;
     private float popularity;
     private String profile_path;
+    private String credit_id;
+    private String department;
+    private String job;
 
     public Crew() {
     }
 
-    public Crew(boolean adult, String credit_id, String department, int gender, int id, String job, String known_for_department, String name, String original_name, float popularity, String profile_path) {
+    public Crew(boolean adult, int gender, Long id, String known_for_department, String name, String original_name, float popularity, String profile_path, String credit_id, String department, String job) {
         this.adult = adult;
-        this.credit_id = credit_id;
-        this.department = department;
         this.gender = gender;
         this.id = id;
-        this.job = job;
         this.known_for_department = known_for_department;
         this.name = name;
         this.original_name = original_name;
         this.popularity = popularity;
         this.profile_path = profile_path;
-    }
-
-    public String getCredit_id() {
-        return credit_id;
-    }
-
-    public void setCredit_id(String credit_id) {
         this.credit_id = credit_id;
-    }
-
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
         this.department = department;
+        this.job = job;
+    }
+
+    public boolean isAdult() {
+        return adult;
+    }
+
+    public void setAdult(boolean adult) {
+        this.adult = adult;
     }
 
     public int getGender() {
@@ -57,20 +49,12 @@ public class Crew {
         this.gender = gender;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getJob() {
-        return job;
-    }
-
-    public void setJob(String job) {
-        this.job = job;
     }
 
     public String getKnown_for_department() {
@@ -113,28 +97,44 @@ public class Crew {
         this.profile_path = profile_path;
     }
 
-    public boolean isAdult() {
-        return adult;
+    public String getCredit_id() {
+        return credit_id;
     }
 
-    public void setAdult(boolean adult) {
-        this.adult = adult;
+    public void setCredit_id(String credit_id) {
+        this.credit_id = credit_id;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
     }
 
     @Override
     public String toString() {
         return "Crew{" +
                 "adult=" + adult +
-                ", credit_id='" + credit_id + '\'' +
-                ", department='" + department + '\'' +
                 ", gender=" + gender +
                 ", id=" + id +
-                ", job='" + job + '\'' +
                 ", known_for_department='" + known_for_department + '\'' +
                 ", name='" + name + '\'' +
                 ", original_name='" + original_name + '\'' +
                 ", popularity=" + popularity +
                 ", profile_path='" + profile_path + '\'' +
+                ", credit_id='" + credit_id + '\'' +
+                ", department='" + department + '\'' +
+                ", job='" + job + '\'' +
                 '}';
     }
 }
