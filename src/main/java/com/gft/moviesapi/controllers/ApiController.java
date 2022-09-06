@@ -51,10 +51,10 @@ public class ApiController {
         return apiService.getMovieCredits(movie_id);
     }
 
-    /*@GetMapping("api/movie/{movie_id}/images")
-    public BackgroundLogosPosters getImagesForMovieById(@PathVariable Integer movie_id) throws IOException {
-        return middleManMovieDBService.findAllImagesForMovieById(movie_id);
-    }*/
+    @GetMapping("api/movie/{movie_id}/images")
+    public List<Image> getImageOfMovieById(@PathVariable int movie_id) throws IOException {
+        return apiService.getImages(movie_id);
+    }
 
     @GetMapping("api/movie/{movie_id}/keywords")
     public List<Keyword> getKeyword(@PathVariable int movie_id) throws IOException {

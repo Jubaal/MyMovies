@@ -61,6 +61,14 @@ public class ApiService {
         return castCrew;
     }
 
+    public List<Image> getImages(int movie_id) throws IOException{
+        mapper = new ObjectMapper();
+        URL url = new URL(uri+"movie/"+movie_id+"/images?api_key="+apiKey);
+        String jsonAString = stream(url);
+        Image[] response  = mapper.readValue(mapper.readTree(jsonAString).get("backdrops").toString(),Image[].class);
+        return Arrays.asList(response);
+    }
+
     public List<Keyword> getKeyword(Integer movie_id) throws IOException {
         mapper = new ObjectMapper();
         URL url = new URL(uri+"movie/"+movie_id+"/keywords?api_key="+apiKey);
