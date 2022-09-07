@@ -2,6 +2,7 @@ package com.gft.moviesapi.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gft.moviesapi.entities.*;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -12,7 +13,9 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 
+
 @Service
+@Profile("!webclient")
 public class ApiService {
     final String uri = "https://api.themoviedb.org/3/";
     String apiKey= "525439ea4a0dda636770a72ffd63ba5e";

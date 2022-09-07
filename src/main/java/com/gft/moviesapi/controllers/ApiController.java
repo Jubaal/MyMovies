@@ -3,6 +3,7 @@ package com.gft.moviesapi.controllers;
 import com.gft.moviesapi.entities.*;
 import com.gft.moviesapi.service.ApiService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +17,9 @@ import java.sql.SQLException;
 import java.io.IOException;
 import java.util.List;
 
+
 @RestController
+@Profile("!webclient")
 public class ApiController {
 
     private static final String INSERT_USERS_SQL = "INSERT INTO user_movies" +
