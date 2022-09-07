@@ -1,4 +1,4 @@
-create table users(
+/*create table users(
                       userid int not null auto_increment,
                       username varchar_ignorecase(50) not null ,
                       password varchar_ignorecase(500) not null,
@@ -24,4 +24,4 @@ VALUES ('user',
 INSERT INTO `users` (`username`,`password`,`role`,`enabled`)
 VALUES ('admin',
         '$2a$10$zxvEq8XzYEYtNjbkRsJEbukHeRx3XS6MDXHMu8cNuNsRfZJWwswDy',
-        'ROLE_ADMIN', 1);
+        'ROLE_ADMIN', 1);*/
