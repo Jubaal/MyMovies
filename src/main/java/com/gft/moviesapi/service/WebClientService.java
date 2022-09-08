@@ -3,6 +3,7 @@ package com.gft.moviesapi.service;
 import com.gft.moviesapi.entities.Genre;
 import io.netty.handler.codec.serialization.ObjectEncoder;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -17,10 +18,11 @@ public class WebClientService {
     @Value("${themoviedatabase.api_key}")
     private String api_key;
 
+    @Cacheable("configuration")
     public HashMap<String, Object> getConfig() {
         return webClient.get()
                 .uri(uriBuilder -> uriBuilder.path("configuration")
-                        .queryParam("api_key",api_key)
+                        .queryParam("api_key", api_key)
                         .build()
                 )
                 .retrieve()
@@ -29,11 +31,11 @@ public class WebClientService {
     }
 
 
-    public HashMap<String,Object> getAllGenres() {
+    public HashMap<String, Object> getAllGenres() {
         return webClient.get()
                 .uri(uriBuilder -> uriBuilder.path("genre/movie/list")
-                .queryParam("api_key",api_key)
-                .build()
+                        .queryParam("api_key", api_key)
+                        .build()
                 )
                 .retrieve()
                 .bodyToMono(HashMap.class)
@@ -44,7 +46,7 @@ public class WebClientService {
     public Object getPopularMovies() {
         return webClient.get()
                 .uri(uriBuilder -> uriBuilder.path("movie/popular")
-                        .queryParam("api_key",api_key)
+                        .queryParam("api_key", api_key)
                         .build()
                 )
                 .retrieve()
@@ -52,14 +54,12 @@ public class WebClientService {
                 .block();
     }
 
-    /*public Object getMovie(int movie_id) {
+    public HashMap<String, Object> findMovieById(int id) {
         return webClient.get()
-                .uri(uriBuilder -> uriBuilder.path("movie/popular")
-                        .queryParam("api_key",api_key)
+                .uri(uriBuilder -> uriBuilder.path("movie/" + id)
+                        .queryParam("api_key", api_key)
                         .build()
                 )
-                .retrieve()
-                .bodyToMono(Object.class)
-                .block();
-    }*/
+                .retrieve().bodyToMono(HashMap.class).block();
+    }
 }

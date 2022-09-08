@@ -20,9 +20,11 @@ public class UserMovie {
     @Id
     @Column(name = "userid", nullable = false)
     private int id;
+    String username;
+    String movie;
     Boolean favorite;
     int personal_rating;
-    int movieid;
+    String movieid;
     String notes;
 
 }
